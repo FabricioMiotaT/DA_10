@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Venta de Pasajes Aereos</title>
+</head>
+<body>
+    <h1>Venta de Pasajes Aereos</h1>
+
+    <h2>Seleccione un vuelo:</h2>
+
+    <form action="procesar_reserva.php" method="post">
+        <label>Vuelo:
+            <select name="vuelo">
+                <?php
+                // Conexión a la base de datos (ajusta los valores según tu configuración)
+                $servername = "localhost";
+                $username = "tu_usuario";
+                $password = "tu_contraseña";
+                $database = "tu_base_de_datos";
+
+                $conn = new mysqli($servername, $username, $password, $database);
+
+                if ($conn->connect_error) {
+                    die("Error en la conexión a la base de datos: " . $conn->connect_error);
+                }
+
+                // Consulta para obtener la lista de vuelos
+                $sql = "SELECT id, origen, destino, precio_base FROM vuelos";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row["id"] . "'>" . $row["origen"] . " - " . $row["destino"] . " ($" . $row["precio_base"] . ")</option>";
+                    }
+                } else {
+                    echo "<option value=''>No hay vuelos disponibles</option>";
+                }
+
+                $conn->close();
+                ?>
+            </select>
+        </label>
+        <br>
+        <label>Fecha de Nacimiento:
+            <input type="date" name="fecha_nacimiento" required>
+        </label>
+        <br>
+        <label>Tipo de Pasajero:
+            <select name="tipo_pasajero">
+                <option value="adulto">Adulto</option>
+                <option value="menor">Menor de Edad</option>
+                <option value="infante">Infante</option>
+            </select>
+        </label>
+        <br>
+        <button type="submit">Reservar Pasaje</button>
+    </form>
+</body>
+</html>

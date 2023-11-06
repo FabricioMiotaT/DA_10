@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Usuarios</title>
+</head>
+<body>
+    <h1>Registro de Usuarios</h1>
+    
+    <form action="procesar_registro.php" method="post">
+        <label>Nombre completo: <input type="text" name="nombre" required></label>
+        <label>Dirección: <input type="text" name="direccion" required></label>
+        <label>Correo Electrónico: <input type="email" name="email" required></label>
+        <label>Contraseña: <input type="password" name="password" required></label>
+        <label>Confirmar Contraseña: <input type="password" name="confirm_password" required></label>
+        <label>Fecha de Nacimiento: <input type="date" name="fecha_nacimiento" required></label>
+        <label>Sexo: 
+            <input type="radio" name="sexo" value="Hombre" required> Hombre
+            <input type="radio" name="sexo" value="Mujer" required> Mujer
+        </label>
+        <label>Temas de Interés: 
+            <input type="checkbox" name="interes[]" value="Ficción"> Ficción
+            <input type="checkbox" name="interes[]" value="Acción"> Acción
+            <input type="checkbox" name="interes[]" value="Suspenso"> Suspenso
+            <input type="checkbox" name="interes[]" value="Terror"> Terror
+            <input type="checkbox" name="interes[]" value="Comedia"> Comedia
+        </label>
+        <label>Aficiones: <textarea name="aficiones" required></textarea></label>
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
